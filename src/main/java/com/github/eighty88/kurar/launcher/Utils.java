@@ -206,7 +206,7 @@ public class Utils {
         try {
             if ((new File(getKurarDirectory(), "KurarClient.json")).exists())
                 (new File(getKurarDirectory(), "KurarClient.json")).delete();
-            URL url = new URL("https://github.com/Palpunte-Union/KurarClient-Binary-java16/releases/download/" + readURL() + "/KurarClient.json");
+            URL url = new URL("https://github.com/Palpunte-Union/KurarClient-Binary-Java16/releases/download/" + readURL() + "/KurarClient.json");
             byteChannel = Channels.newChannel(url.openStream());
             outputStream = new FileOutputStream(new File(getKurarDirectory(), "KurarClient.json"));
             outputStream.getChannel().transferFrom(byteChannel, 0L, Long.MAX_VALUE);
