@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'java-library'
+    id 'com.github.johnrengelman.shadow' version '4.0.4'
+}
+
+group 'com.github.eighty88'
+mainClassName = 'com.github.eighty88.kurar.launcher.Main'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.eclipsesource.minimal-json:minimal-json:0.9.5'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.github.eighty88.kurar.launcher.Main'
+    }
+}
+
+shadowJar {
+    archiveName = jar.archiveName
+
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    exclude('dummyThing')
+    exclude('META-INF/maven/')
+    exclude('META-INF/nar/')
+    exclude('module-info.class')
+    exclude('META-INF/versions/')
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+assemble.dependsOn(shadowJar)
